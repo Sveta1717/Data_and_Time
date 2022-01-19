@@ -116,6 +116,14 @@ void Date::PrintDate()
 	cout << " day of week: " << *DayOfWeek() << ' ' << "\n\n";
 }
 
+Date& Date::operator()(int day, int month, int year)
+{
+	this->SetYear(year);
+	this->SetMonth(month);
+	this->SetDay(day);
+	return *this;
+}
+
 int Date::operator- (const Date& second)
 {
 	if (year == second.GetYear() && month == second.GetMonth()
@@ -212,4 +220,21 @@ bool Date::operator !=(Date& second)
 {
 	return this->day == second.day && this->month == second.month && this->year == second.year ? false : true;
 
+}
+
+istream& operator>>(istream& is, Date& original)
+{
+	int day;
+	int month;
+	int year;
+	is >> day >> month >> year;
+	original.SetMonth(month);
+	original.SetYear(year);
+	original.SetDay(day);
+	return is;
+}
+ostream& operator<<(ostream& os, Date& original)
+{
+	original.PrintDate();
+	return os;
 }

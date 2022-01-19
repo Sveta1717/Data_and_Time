@@ -24,9 +24,13 @@ public:
 	void operator+ (int days);
 	Date& operator++(int day);
 	Date& operator--(int day);
+	Date& operator()(int day, int month, int year);	
 	bool operator <(Date& second);
 	bool operator >(Date& second);
 	bool operator ==(Date& second);
 	bool operator !=(Date& second);
 };
+
+//istream& operator>>(istream& is, Date& original);
+ostream& operator<<(ostream& os, Date& original);
 

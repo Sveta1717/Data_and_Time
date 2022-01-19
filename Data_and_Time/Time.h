@@ -20,8 +20,12 @@ public:
 	Time& operator++();	
 	Time& operator++(int a);	
 	Time& operator--();	
+	Time& operator()(int hours, int minutes, int seconds);
 	bool operator>(Time& second);	
 	bool operator<(Time& second);	
 	bool operator==(Time& second);	
-	bool operator!=(Time& second);	
+	bool operator!=(Time& second);		
 };
+
+//istream& operator>>(istream& is, Time& original);
+ostream& operator<<(ostream& os, Time& original);

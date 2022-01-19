@@ -74,6 +74,14 @@ Time::Time(int hours, int minutes, int seconds)
 		return this->hours;
 	}
 
+	Time& Time::operator()(int hours, int minutes, int seconds)
+	{
+		this->hours = hours;
+		this->minutes = minutes;
+		this->seconds = seconds;
+		return *this;
+	}
+
 	Time& Time::operator+(int seconds)
 	{
 		SetSeconds(this->seconds + seconds % 60);
@@ -140,4 +148,21 @@ Time::Time(int hours, int minutes, int seconds)
 	bool Time::operator!=(Time& second)
 	{
 		return *this == second ? false : true;
+	}
+
+	istream& operator>>(istream& is, Time& original)
+	{
+		int hours;
+		int minutes;
+		int seconds;
+		is >> hours >> minutes >> seconds;
+		original.SetHours(hours);
+		original.SetMinutes(minutes);
+		original.SetSeconds(seconds);
+		return is;
+	}
+	ostream& operator<<(ostream& os, Time& original)
+	{
+		original.PrintTime();
+		return os;
 	}
